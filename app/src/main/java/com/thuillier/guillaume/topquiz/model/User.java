@@ -9,6 +9,6 @@ public class User {
     }
 
     public void setFirstName(String firstName) {
-        mFirstName = firstName;
+        this.mFirstName = firstName;
     }
 }
