@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ponroy.florian.topquiz.GameActivity">
+    tools:context="com.thuillier.guillaume.topquiz.Controller.GameActivity">
 
     <TextView
         android:id="@+id/activity_game_question_text"
@@ -20,7 +20,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:text="Question?"></TextView>
+        android:text="Question?"/>
 
     <Button
         android:id="@+id/activity_game_answer1_btn"
@@ -65,4 +65,5 @@
         android:background="@android:color/white"
         android:textSize="20sp"
         android:text="Answer4"/>
+
 </LinearLayout>
