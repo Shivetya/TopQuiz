@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mGreetingText;
     private EditText mNameInput;
     private Button mPlayButton;
+    private Button mHistoryButton;
     private User mUser;
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     private SharedPreferences mPreferences;
@@ -41,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         mGreetingText = (TextView) findViewById(R.id.activity_main_greeting_txt);
         mNameInput = (EditText) findViewById(R.id.activity_main_name_input);
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
+        mHistoryButton = (Button) findViewById(R.id.activity_main_history_button);
+
+        if (mPreferences.getInt(PREF_KEY_SCORE, -1) == -1){
+            mHistoryButton.setVisibility(View.INVISIBLE);
+        }
 
         mPlayButton.setEnabled(false);
 

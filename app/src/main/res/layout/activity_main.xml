@@ -31,4 +31,13 @@
         android:layout_marginTop="20dp"
         android:text="Let's play"/>
 
+    <Button
+        android:id="@+id/activity_main_history_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:text="History"
+        android:layout_marginStart="20dp" />
+
 </LinearLayout>
