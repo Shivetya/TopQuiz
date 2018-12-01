@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import static java.lang.System.out;
 
 import com.thuillier.guillaume.topquiz.R;
 import com.thuillier.guillaume.topquiz.model.User;
@@ -26,14 +25,17 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
 
     public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
+    private static final String[] PREF_KEY_SCORE_TABULAR = new String[] {"PREF_KEY_SCORE1","PREF_KEY_SCORE2","PREF_KEY_SCORE3",
+            "PREF_KEY_SCORE4","PREF_KEY_SCORE5"};
+
     public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
+    private static final String[] PREF_KEY_FIRSTNAME_TABULAR = new String[]{"PREF_KEY_FIRSTNAME1","PREF_KEY_FIRSTNAME2",
+            "PREF_KEY_FIRSTNAME3", "PREF_KEY_FIRSTNAME4", "PREF_KEY_FIRSTNAME5"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        System.out.println("MainActivity::onCreate()");
 
         mUser = new User();
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
         mHistoryButton = (Button) findViewById(R.id.activity_main_history_button);
 
-        if (mPreferences.getInt(PREF_KEY_SCORE, -1) == -1){
+        if (mPreferences.getInt(PREF_KEY_SCORE, -1) == -1) {
             mHistoryButton.setVisibility(View.INVISIBLE);
         }
 
@@ -100,6 +102,15 @@ public class MainActivity extends AppCompatActivity {
 
             mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
 
+            for (int i = 0; i <= 4; i++) {
+                if(score > mPreferences.getInt(PREF_KEY_SCORE_TABULAR[i], -1)){
+
+                    mPreferences.edit().putInt(PREF_KEY_SCORE_TABULAR[i], score).apply();
+                    mPreferences.edit().putString(PREF_KEY_FIRSTNAME_TABULAR[i], mUser.getFirstname()).apply();
+                    break;
+                }
+            }
+
             greetUser();
         }
     }
@@ -120,33 +131,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        out.println("MainActivity::onStart()");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        out.println("MainActivity::onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        out.println("MainActivity::onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        out.println("MainActivity::onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        out.println("MainActivity::onDestroy()");
-    }
+    /**
+     * Test if mPreferences contains score, if not, creation of the five values for future score.
+     * @param mPreferences with score = -1.
+     * @return
+     */
 }

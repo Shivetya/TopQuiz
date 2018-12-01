@@ -42,8 +42,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        System.out.println("GameActivity::onCreate()");
-
         mQuestionBank = this.generateQuestions();
 
         if (savedInstanceState != null) {
@@ -200,38 +198,4 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 question9));
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        System.out.println("GameActivity::onStart()");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        System.out.println("GameActivity::onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        System.out.println("GameActivity::onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        System.out.println("GameActivity::onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        System.out.println("GameActivity::onDestroy()");
-    }
 }
