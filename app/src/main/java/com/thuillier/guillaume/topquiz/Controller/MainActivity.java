@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
 
     public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
-    private static final String[] PREF_KEY_SCORE_TABULAR = new String[] {"PREF_KEY_SCORE1","PREF_KEY_SCORE2","PREF_KEY_SCORE3",
+    static final String[] PREF_KEY_SCORE_TABULAR = new String[] {"PREF_KEY_SCORE1","PREF_KEY_SCORE2","PREF_KEY_SCORE3",
             "PREF_KEY_SCORE4","PREF_KEY_SCORE5"};
 
     public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
-    private static final String[] PREF_KEY_FIRSTNAME_TABULAR = new String[]{"PREF_KEY_FIRSTNAME1","PREF_KEY_FIRSTNAME2",
+    static final String[] PREF_KEY_FIRSTNAME_TABULAR = new String[]{"PREF_KEY_FIRSTNAME1","PREF_KEY_FIRSTNAME2",
             "PREF_KEY_FIRSTNAME3", "PREF_KEY_FIRSTNAME4", "PREF_KEY_FIRSTNAME5"};
 
     @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         mUser = new User();
 
-        mPreferences = getPreferences(MODE_PRIVATE);
+        mPreferences = getSharedPreferences("scores.scores",MODE_PRIVATE);
 
         mGreetingText = (TextView) findViewById(R.id.activity_main_greeting_txt);
         mNameInput = (EditText) findViewById(R.id.activity_main_name_input);
@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (mPreferences.getInt(PREF_KEY_SCORE, -1) == -1) {
             mHistoryButton.setVisibility(View.INVISIBLE);
+        } else {
+            mHistoryButton.setVisibility(View.VISIBLE);
         }
 
         mPlayButton.setEnabled(false);
@@ -111,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            mHistoryButton.setVisibility(View.VISIBLE);
+
             greetUser();
         }
     }
@@ -130,10 +134,4 @@ public class MainActivity extends AppCompatActivity {
             mPlayButton.setEnabled(true);
         }
     }
-
-    /**
-     * Test if mPreferences contains score, if not, creation of the five values for future score.
-     * @param mPreferences with score = -1.
-     * @return
-     */
 }

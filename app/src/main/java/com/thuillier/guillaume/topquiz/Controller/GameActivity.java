@@ -31,9 +31,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int mScore;
     private int mNumberOfQuestions;
 
-    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
-    public static final String BUNDLE_STATE_SCORE = "currentScore";
-    public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
+    static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+    static final String BUNDLE_STATE_SCORE = "currentScore";
+    static final String BUNDLE_STATE_QUESTION = "currentQuestion";
 
     private boolean mEnableTouchEvents;
 
