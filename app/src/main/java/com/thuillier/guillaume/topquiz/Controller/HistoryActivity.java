@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.thuillier.guillaume.topquiz.R;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class HistoryActivity extends AppCompatActivity {
 
     private TextView mScore1;
@@ -87,5 +89,14 @@ public class HistoryActivity extends AppCompatActivity {
                     mPreferences.getInt(MainActivity.PREF_KEY_SCORE_TABULAR[4], -1);
 
         } else mTextScore5 = "";
+    }
+
+    private void byScore(){
+
+
+    }
+
+    private void byPlayer(){
+
     }
 }
