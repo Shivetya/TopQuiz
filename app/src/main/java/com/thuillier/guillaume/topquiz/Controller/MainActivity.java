@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
 
-            for (int i = 0; i <= 4; i++) {
+            for (int i = 4; i >= 0; i--) {
                 if(score > mPreferences.getInt(PREF_KEY_SCORE_TABULAR[i], -1)){
 
                     mPreferences.edit().putInt(PREF_KEY_SCORE_TABULAR[i], score).apply();
