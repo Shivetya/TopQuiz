@@ -104,14 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
 
-            for (int i = 4; i >= 0; i--) {
-                if(score > mPreferences.getInt(PREF_KEY_SCORE_TABULAR[i], -1)){
-
-                    mPreferences.edit().putInt(PREF_KEY_SCORE_TABULAR[i], score).apply();
-                    mPreferences.edit().putString(PREF_KEY_FIRSTNAME_TABULAR[i], mUser.getFirstname()).apply();
-                    break;
-                }
-            }
+            putScoreInHistory(score);
 
             mHistoryButton.setVisibility(View.VISIBLE);
 
@@ -132,6 +125,33 @@ public class MainActivity extends AppCompatActivity {
             mNameInput.setText(firstname);
             mNameInput.setSelection(firstname.length());
             mPlayButton.setEnabled(true);
+        }
+    }
+
+    private void putScoreInHistory(int score){
+
+        int minScore = 100;
+        int minScoreIndex = 4;
+        boolean scoreWritten = false;
+
+        for (int i = 0; i <= 4; i++) {
+            if (mPreferences.getInt(PREF_KEY_SCORE_TABULAR[i], -1) == -1){
+
+                mPreferences.edit().putInt(PREF_KEY_SCORE_TABULAR[i], score).apply();
+                mPreferences.edit().putString(PREF_KEY_FIRSTNAME_TABULAR[i], mUser.getFirstname()).apply();
+                scoreWritten = true;
+                break;
+            }
+        }
+        if (!scoreWritten) {
+            for (int i = 0; i <= 4; i++) {
+                if (mPreferences.getInt(PREF_KEY_SCORE_TABULAR[i], -1) < minScore && mPreferences.getInt(PREF_KEY_SCORE_TABULAR[i], -1) != -1) {
+                    minScore = mPreferences.getInt(PREF_KEY_SCORE_TABULAR[i], -1);
+                    minScoreIndex = i;
+                }
+            }
+            mPreferences.edit().putInt(PREF_KEY_SCORE_TABULAR[minScoreIndex], score).apply();
+            mPreferences.edit().putString(PREF_KEY_FIRSTNAME_TABULAR[minScoreIndex], mUser.getFirstname()).apply();
         }
     }
 }
