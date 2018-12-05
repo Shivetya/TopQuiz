@@ -1,4 +1,4 @@
-package com.thuillier.guillaume.topquiz.Controller;
+package com.thuillier.guillaume.topquiz.controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;

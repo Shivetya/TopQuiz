@@ -1,4 +1,4 @@
-package com.thuillier.guillaume.topquiz.Controller;
+package com.thuillier.guillaume.topquiz.controller;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
 
     public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
+
     static final String[] PREF_KEY_SCORE_TABULAR = new String[] {"PREF_KEY_SCORE1","PREF_KEY_SCORE2","PREF_KEY_SCORE3",
             "PREF_KEY_SCORE4","PREF_KEY_SCORE5"};
 
     public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
+
     static final String[] PREF_KEY_FIRSTNAME_TABULAR = new String[]{"PREF_KEY_FIRSTNAME1","PREF_KEY_FIRSTNAME2",
             "PREF_KEY_FIRSTNAME3", "PREF_KEY_FIRSTNAME4", "PREF_KEY_FIRSTNAME5"};
 

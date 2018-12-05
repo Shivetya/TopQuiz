@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.thuillier.guillaume.topquiz.Controller.GameActivity">
+    tools:context="com.thuillier.guillaume.topquiz.controller.GameActivity">
 
     <TextView
         android:id="@+id/activity_history_scoreNumber1_text"
