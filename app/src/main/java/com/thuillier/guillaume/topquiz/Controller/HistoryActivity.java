@@ -9,8 +9,7 @@ import android.widget.TextView;
 import com.thuillier.guillaume.topquiz.R;
 
 import java.util.ArrayList;
-
-import static java.util.Collections.sort;
+import java.util.Collections;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -20,16 +19,22 @@ public class HistoryActivity extends AppCompatActivity {
 
     private ArrayList<String> mPlayers;
 
+    private TextView score1;
+    private TextView score2;
+    private TextView score3;
+    private TextView score4;
+    private TextView score5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        TextView score1 = findViewById(R.id.activity_history_scoreNumber1_text);
-        TextView score2 = findViewById(R.id.activity_history_scoreNumber2_text);
-        TextView score3 = findViewById(R.id.activity_history_scoreNumber3_text);
-        TextView score4 = findViewById(R.id.activity_history_scoreNumber4_text);
-        TextView score5 = findViewById(R.id.activity_history_scoreNumber5_text);
+        score1 = findViewById(R.id.activity_history_scoreNumber1_text);
+        score2 = findViewById(R.id.activity_history_scoreNumber2_text);
+        score3 = findViewById(R.id.activity_history_scoreNumber3_text);
+        score4 = findViewById(R.id.activity_history_scoreNumber4_text);
+        score5 = findViewById(R.id.activity_history_scoreNumber5_text);
         Button byScoreButton = findViewById(R.id.activity_history_by_score_button);
         Button byPlayerButton = findViewById(R.id.activity_history_by_player_button);
         mPreferences = getSharedPreferences("scores.scores",MODE_PRIVATE);
@@ -39,7 +44,7 @@ public class HistoryActivity extends AppCompatActivity {
         mPlayers = new ArrayList<>(5);
 
         for (int i = 0; i <= 4; i++){
-            mPlayers.add(mPreferences.getString(MainActivity.PREF_KEY_FIRSTNAME_TABULAR[i], null) + " : " +
+            mPlayers.add(mPreferences.getString(MainActivity.PREF_KEY_FIRSTNAME_TABULAR[i], "zzzzz") + " : " +
                     mPreferences.getInt(MainActivity.PREF_KEY_SCORE_TABULAR[i], -1));
         }
 
@@ -54,7 +59,7 @@ public class HistoryActivity extends AppCompatActivity {
         byScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                byScore();
             }
         });
 
@@ -62,7 +67,6 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 byPlayer();
-                createStringScore();
             }
         });
     }
@@ -75,7 +79,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         for (int i = 0; i <= 4; i++){
 
-            if (mPlayers.get(i).contains("null")){
+            if (mPlayers.get(i).contains("-1")){
 
                 mTextScore[i] = "";
 
@@ -87,6 +91,16 @@ public class HistoryActivity extends AppCompatActivity {
         }
     }
 
+    private void setTextScore(){
+
+        score1.setText(mTextScore[0]);
+        score2.setText(mTextScore[1]);
+        score3.setText(mTextScore[2]);
+        score4.setText(mTextScore[3]);
+        score5.setText(mTextScore[4]);
+    }
+
+
     private void byScore(){
 
 
@@ -94,6 +108,8 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void byPlayer(){
 
-        sort(mPlayers);
+        Collections.sort(mPlayers);
+        createStringScore();
+        setTextScore();
     }
 }
