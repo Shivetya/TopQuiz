@@ -26,6 +26,10 @@ public class Player {
     @Override
     public String toString(){
 
-        return name + " : " + score;
+        if (name != null) {
+            return name + " : " + score;
+        } else {
+            return "";
+        }
     }
 }

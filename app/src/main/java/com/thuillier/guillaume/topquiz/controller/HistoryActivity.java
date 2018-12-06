@@ -3,7 +3,6 @@ package com.thuillier.guillaume.topquiz.controller;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import com.thuillier.guillaume.topquiz.model.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Objects;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -51,8 +49,6 @@ public class HistoryActivity extends AppCompatActivity {
             mPlayers.add(new Player(mPreferences.getString(MainActivity.PREF_KEY_FIRSTNAME_TABULAR[i], null), mPreferences.getInt(MainActivity.PREF_KEY_SCORE_TABULAR[i], -1)));
         }
 
-        createStringScore();
-
         setTextScore();
 
         byScoreButton.setOnClickListener(new View.OnClickListener() {
@@ -74,22 +70,6 @@ public class HistoryActivity extends AppCompatActivity {
      * Test if there is scores to display, if not : display nothing, if yes, display "player : score"
      */
 
-    private void createStringScore() {
-/*
-        for (int i = 0; i <= 4; i++) {
-
-            if (mPlayers.get(i).contains("-1")) {
-
-                mTextScore[i] = "";
-
-            } else {
-
-                mTextScore[i] = mPlayers.get(i);
-
-            }
-        }
-        */
-    }
 
     private void setTextScore() {
 
@@ -107,10 +87,9 @@ public class HistoryActivity extends AppCompatActivity {
 
             @Override
             public int compare(Player o1, Player o2) {
-                return o1.getScore() - o2.getScore();
+                return o2.getScore() - o1.getScore();
             }
         });
-        createStringScore();
         setTextScore();
 
     }
@@ -121,14 +100,13 @@ public class HistoryActivity extends AppCompatActivity {
 
             @Override
             public int compare(Player o1, Player o2) {
-                if (o1.getName() == null && o2.getName() != null) return -1;
-                if (o2.getName() == null && o1.getName() != null) return 1;
+                if (o1.getName() == null && o2.getName() != null) return 1;
+                if (o2.getName() == null && o1.getName() != null) return -1;
                 if (o1.getName() == null && o2.getName() == null) return 0;
                 
                 return o1.getName().compareTo(o2.getName());
             }
         });
-        createStringScore();
         setTextScore();
     }
 
